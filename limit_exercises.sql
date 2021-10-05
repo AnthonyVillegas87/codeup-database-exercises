@@ -1,7 +1,14 @@
 USE employees;
-SELECT last_name
+SELECT  DISTINCT last_name
 FROM employees
-ORDER BY last_name DESC;
-SELECT DISTINCT last_name FROM employees
-WHERE employees.employees.last_name LIKE 'Z%'
+ORDER BY last_name DESC
 LIMIT 10;
+
+SELECT emp_no FROM salaries
+ORDER BY salary DESC
+LIMIT 5;
+
+SELECT emp_no FROM salaries
+ORDER BY salary DESC
+LIMIT 5 OFFSET 45;
+

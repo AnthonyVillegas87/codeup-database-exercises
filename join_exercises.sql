@@ -36,3 +36,5 @@ JOIN salaries
     ON dept_manager.emp_no = salaries.salary
 WHERE  dept_manager.to_date >= NOW()
 ORDER BY dept_name ;
+
+

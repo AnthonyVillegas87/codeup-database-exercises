@@ -50,3 +50,13 @@ SELECT DATE_FORMAT(birthdate, '%W %M %Y') FROM people;
 SELECT DATE_FORMAT(birth_date_time, '%W %M %Y') FROM people;
 SELECT DATE_FORMAT(birth_date_time, '%m/%d/%Y') FROM people;
 SELECT DATE_FORMAT(birth_date_time, '%m/%d/%Y at %h:%m') FROM people;
+
+# DATE MATH
+SELECT name, birthdate, DATEDIFF(NOW(), birthdate) FROM people;
+SELECT birth_date_time, DATE_ADD(birth_date_time, INTERVAL 1 MONTH) FROM people;
+SELECT birth_date_time, DATE_ADD(birth_date_time, INTERVAL 10 SECOND ) FROM people;
+SELECT birth_date_time, DATE_ADD(birth_date_time, INTERVAL 3 QUARTER) FROM people;
+SELECT birth_date_time, birth_date_time + INTERVAL 5 MONTH FROM people;
+SELECT birth_date_time, birth_date_time - INTERVAL 5 MONTH FROM people;
+SELECT birth_date_time, birth_date_time + INTERVAL 15 MONTH + INTERVAL 10 HOUR FROM people;
+

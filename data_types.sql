@@ -29,4 +29,8 @@ INSERT INTO people(name, birthdate, birthtime, birth_date_time) VALUES('Larry', 
 
 SELECT * FROM people;
 
-# CURDATE, CURTIME & NOW
+# CURDATE(gives current date), CURTIME(gives current time) & NOW(gives current datetime)
+INSERT INTO people(name, birthdate, birthtime, birth_date_time) VALUES('Michael', CURDATE(), CURTIME(), NOW());
+SELECT * FROM people;
+
+# FORMATTING DATES

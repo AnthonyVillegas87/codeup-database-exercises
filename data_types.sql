@@ -34,3 +34,19 @@ INSERT INTO people(name, birthdate, birthtime, birth_date_time) VALUES('Michael'
 SELECT * FROM people;
 
 # FORMATTING DATES
+SELECT name, birthdate FROM people;
+SELECT name, DAY(birthdate) AS 'day of birth' FROM people;
+SELECT name, birthdate, DAY(birthdate) AS 'day of birth' FROM people;
+SELECT name, DAYNAME(birthdate) AS 'day of birth' FROM people;
+SELECT name, birthdate, DAYOFWEEK(birthdate) AS 'day of birth' FROM people;
+SELECT name, birthdate, DAYOFYEAR(birthdate) AS 'day of birth' FROM people;
+SELECT name, birth_date_time, DAYOFYEAR(birth_date_time) AS 'day of birth' FROM people;
+SELECT name, birth_date_time, MONTH(birth_date_time) AS 'day of birth' FROM people;
+SELECT name, birth_date_time, MONTHNAME(birth_date_time) AS 'day of birth' FROM people;
+SELECT name, birthtime, HOUR(birthtime) AS 'day of birth' FROM people;
+SELECT name, birthtime, MINUTE(birthtime) AS 'day of birth' FROM people;
+SELECT CONCAT(MONTHNAME(birthdate), ' ', DAY(birthdate), ' ', YEAR(birthdate)) FROM people;
+SELECT DATE_FORMAT(birthdate, '%W %M %Y') FROM people;
+SELECT DATE_FORMAT(birth_date_time, '%W %M %Y') FROM people;
+SELECT DATE_FORMAT(birth_date_time, '%m/%d/%Y') FROM people;
+SELECT DATE_FORMAT(birth_date_time, '%m/%d/%Y at %h:%m') FROM people;

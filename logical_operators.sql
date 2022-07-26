@@ -25,3 +25,19 @@ SELECT title, author_lname, released_year FROM books WHERE author_lname = 'Egger
 SELECT title, author_lname, released_year, stock_quantity FROM books WHERE author_lname = 'Eggers' OR released_year > 2010 OR stock_quantity > 100;
 
 # BETWEEN
+SELECT title, released_year FROM books WHERE released_year BETWEEN 2004 AND 2015;
+SELECT title, released_year FROM books WHERE released_year NOT BETWEEN 2004 AND 2015 ORDER BY released_year;
+SELECT name, birth_date_time FROM people WHERE birth_date_time BETWEEN CAST('1980-01-01' AS DATETIME) AND CAST('2000-01-01' AS DATETIME);
+
+
+# IN & NOT IN
+USE book_store_db;
+SELECT title, author_lname FROM books WHERE author_lname = 'Carver' OR author_lname = 'Lahiri' OR author_lname = 'Smith';
+SELECT title, author_lname FROM books WHERE author_lname IN ('Carver', 'Lahiri', 'Smith');
+SELECT title, released_year FROM books WHERE released_year IN (2017, 1985);
+
+SELECT title, author_lname FROM books WHERE author_lname NOT IN ('Carver', 'Lahiri', 'Smith');
+SELECT title, released_year FROM books WHERE released_year NOT IN (2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016);
+SELECT title, released_year FROM books WHERE released_year >= 2000 AND released_year NOT IN (2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016);
+SELECT title, released_year FROM books WHERE released_year NOT IN (2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016);
+SELECT title, released_year FROM books WHERE released_year >= 2000 AND released_year % 2 != 0;

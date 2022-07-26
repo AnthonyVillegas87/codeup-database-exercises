@@ -41,3 +41,16 @@ SELECT title, released_year FROM books WHERE released_year NOT IN (2000, 2002, 2
 SELECT title, released_year FROM books WHERE released_year >= 2000 AND released_year NOT IN (2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016);
 SELECT title, released_year FROM books WHERE released_year NOT IN (2000, 2002, 2004, 2006, 2008, 2010, 2012, 2014, 2016);
 SELECT title, released_year FROM books WHERE released_year >= 2000 AND released_year % 2 != 0;
+
+# CASE STATEMENTS
+SELECT title, released_year, CASE WHEN released_year >= 2000 THEN 'Modern Literature' ELSE '20th Century Literature' END AS era FROM books;
+SELECT title, released_year, IF(released_year >= 2000, 'Modern Literature', '20th Century Literature') AS era FROM books;
+
+SELECT title, stock_quantity, CASE WHEN stock_quantity BETWEEN 0 AND 50 THEN '*' WHEN stock_quantity BETWEEN 51 AND 100 THEN '**' ELSE '***' END AS stock FROM books;
+
+SELECT title, stock_quantity, CASE
+    WHEN stock_quantity BETWEEN 0 AND 50 THEN '*'
+    WHEN stock_quantity BETWEEN 51 AND 100 THEN '**'
+    WHEN stock_quantity BETWEEN 101 AND 150 THEN '***'
+    ELSE '****' END AS stock
+FROM books;

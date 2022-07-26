@@ -126,7 +126,7 @@ DELETE FROM cats;
 SELECT CONCAT(author_fname, ' ', author_lname) AS 'full_name' FROM books;
 
 SELECT author_fname AS first_name, author_lname AS last_name,
-    -> CONCAT(author_fname, ' , ', author_lname) AS full_name FROM books;
+     CONCAT(author_fname, ' , ', author_lname) AS full_name FROM books;
 
 ###### SUBSTRING ######
 SELECT SUBSTRING(title, 1, 11);
@@ -172,8 +172,8 @@ SELECT CONCAT(' MY FAVORITE TITLES ARE ', LOWER(title)) FROM books;
 
 
 SELECT CONCAT(' MY FAVORITE TITLES ARE ', LOWER(title)) FROM books;
-SELECT REVERSE(" Why does my cat look at me with such hatred? ");
-SELECT REVERSE(UPPER("Why does my cat look at me with such hatred?"));
+SELECT REVERSE(' Why does my cat look at me with such hatred? ');
+SELECT REVERSE(UPPER('Why does my cat look at me with such hatred?'));
 SELECT REPLACE(CONCAT('I', ' ', 'like', ' ', 'cats'), ' ', '-');
 SELECT REPLACE(title, ' ', '->') FROM books;
 SELECT author_lname AS 'forwards', REVERSE(author_lname) AS 'backwards' FROM books;
@@ -193,11 +193,11 @@ SELECT DISTINCT CONCAT(author_fname,' ', author_lname) AS 'full name' FROM books
 
 #### ORDER BY ####
 SELECT author_fname FROM books ORDER BY author_fname;
-SELECT autor_lname FROM books ORDER BY author_lname DESC;
+SELECT author_lname FROM books ORDER BY author_lname DESC;
 SELECT title FROM books ORDER BY title DESC;
 SELECT released_year FROM books ORDER BY released_year;
 SELECT DISTINCT author_fname FROM books ORDER BY author_fname;
-SELECT, released_year, pages FROM books ORDER BY released_year;
+SELECT released_year, pages FROM books ORDER BY released_year;
 SELECT title, author_fname, author_lname FROM books ORDER BY 3;
 SELECT author_fname, author_lname FROM books ORDER BY author_lname, author_fname;
 

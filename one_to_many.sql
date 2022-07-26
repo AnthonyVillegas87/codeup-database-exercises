@@ -38,3 +38,25 @@ SELECT * FROM orders;
 SELECT * FROM customers;
 
 ####  CROSS JOIN ####
+# TWO-STEP PROCESS
+SELECT * FROM customers WHERE last_name = 'Tudor';
+SELECT * FROM orders WHERE customer_id = 1;
+
+# USING SUB-QUERY
+SELECT * FROM orders WHERE customer_id =
+     (
+       SELECT id FROM customers
+       WHERE last_name = 'Tudor'
+     );
+
+# BASIC CROSS JOIN
+SELECT * FROM customers, orders;
+
+
+#### (IMPLICIT) INNER JOIN ####
+SELECT * FROM customers, orders WHERE customers.id = orders.customer_id;
+SELECT first_name, last_name, order_date, amount FROM customers, orders WHERE customers.id = orders.customer_id;
+
+#### (EXPLICIT) INNER JOIN ####
+SELECT * FROM customers JOIN orders ON customers.id = orders.customer_id;
+SELECT first_name, last_name, order_date, amount FROM customers JOIN orders ON customers.id = orders.customer_id;

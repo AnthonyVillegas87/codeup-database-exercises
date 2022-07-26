@@ -60,3 +60,14 @@ SELECT first_name, last_name, order_date, amount FROM customers, orders WHERE cu
 #### (EXPLICIT) INNER JOIN ####
 SELECT * FROM customers JOIN orders ON customers.id = orders.customer_id;
 SELECT first_name, last_name, order_date, amount FROM customers JOIN orders ON customers.id = orders.customer_id;
+SELECT first_name, last_name, order_date, amount FROM customers JOIN orders ON customers.id = orders.customer_id ORDER BY order_date;
+SELECT first_name, last_name, order_date, amount FROM customers JOIN orders ON customers.id = orders.customer_id ORDER BY amount;
+
+
+
+#### LEFT JOIN ####
+# SET GLOBAL sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
+SELECT first_name, last_name, order_date, SUM(amount) AS 'total_spent' FROM customers JOIN orders ON customers.id = orders.customer_id GROUP BY orders.customer_id ORDER BY total_spent;
+SELECT * FROM customers LEFT JOIN orders ON customers.id = orders.customer_id;
+SELECT first_name, last_name, order_date, amount FROM customers LEFT JOIN orders ON customers.id = orders.customer_id;
+SELECT first_name, last_name, IFNULL(SUM(amount), 0) AS total_spent FROM customers LEFT JOIN orders ON customers.id = orders.customer_id GROUP BY customers.id ORDER BY total_spent;

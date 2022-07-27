@@ -71,3 +71,34 @@ SELECT first_name, last_name, order_date, SUM(amount) AS 'total_spent' FROM cust
 SELECT * FROM customers LEFT JOIN orders ON customers.id = orders.customer_id;
 SELECT first_name, last_name, order_date, amount FROM customers LEFT JOIN orders ON customers.id = orders.customer_id;
 SELECT first_name, last_name, IFNULL(SUM(amount), 0) AS total_spent FROM customers LEFT JOIN orders ON customers.id = orders.customer_id GROUP BY customers.id ORDER BY total_spent;
+
+#### RIGHT JOIN PT 1 ####
+SELECT first_name, last_name, order_date, amount FROM customers RIGHT JOIN orders ON customers.id = orders.customer_id;
+
+#### RIGHT JOINS PT 2 ####
+SELECT first_name, last_name, order_date, amount FROM customers RIGHT JOIN orders ON customers.id = orders.customer_id ORDER BY first_name;
+
+
+#### ON DELETE CASCADE ####
+DROP TABLE customers, orders;
+
+CREATE TABLE customers (
+                           id  INT AUTO_INCREMENT PRIMARY KEY,
+                           first_name VARCHAR(100),
+                           last_name VARCHAR(100),
+                           email VARCHAR(100)
+);
+
+CREATE TABLE orders(
+                       id INT AUTO_INCREMENT PRIMARY KEY,
+                       order_date DATE,
+                       amount DECIMAL(8, 2),
+                       customer_id INT,
+                       FOREIGN KEY(customer_id) REFERENCES customers(id) ON DELETE CASCADE
+);
+
+SELECT * FROM customers;
+SELECT * FROM orders;
+DELETE FROM customers WHERE email = 'george@gmail.com';
+
+

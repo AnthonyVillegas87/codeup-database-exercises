@@ -26,6 +26,15 @@ CREATE TABLE comments(
   FOREIGN KEY(photo_id) REFERENCES photos(id)
 );
 
+CREATE TABLE likes(
+   user_id INT NOT NULL,
+   photo_id INT NOT NULL,
+   created_at TIMESTAMP DEFAULT NOW(),
+   FOREIGN KEY(user_id) REFERENCES users(id),
+   FOREIGN KEY(photo_id) REFERENCES photos(id),
+   PRIMARY KEY(user_id, photo_id)
+);
+
 
 INSERT INTO users(username) VALUES
     ('Jmac'),
@@ -41,6 +50,14 @@ INSERT INTO comments(comment_text, user_id, photo_id) VALUES
    ('What a Great Scene!!', 1, 2),
    ('Meow!', 3, 2),
    ('Whoa, Marvelous!', 2, 1);
+
+INSERT INTO likes(user_id, photo_id) VALUES
+    (1, 1),
+    (2, 1),
+    (1, 2),
+    (1, 3),
+    (3, 3);
+
 
 SELECT * FROM users;
 SELECT * FROM photos;

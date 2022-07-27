@@ -68,6 +68,31 @@ SELECT * FROM series;
 SELECT * FROM reviewers;
 SELECT * FROM reviews;
 
+#### TITLE, RATING COLUMNS (INNER JOIN)####
+SELECT title, rating FROM series JOIN reviews ON series.id = reviews.series_id;
 
+##### TITLE, AVG RATING (INNER JOIN) ####
+SELECT title, AVG(rating) AS avg_rating FROM series JOIN reviews ON series.id = reviews.series_id GROUP BY series.id ORDER BY avg_rating;
 
+#### FIRST NAME, LAST NAME, RATING (INNER JOIN) ####
+SELECT first_name, last_name, rating FROM reviewers INNER JOIN reviews ON reviewers.id = reviews.reviewer_id;
 
+#### UNREVIEWED SERIES (LEFT JOIN)  ####
+SELECT title AS unreviewed_series FROM series LEFT JOIN reviews ON series.id = reviews.series_id WHERE rating IS NULL;
+
+#### GENRE, RATING (INNER JOIN) ####
+SELECT genre, AVG(rating) AS avg_rating FROM series INNER JOIN reviews ON series.id = reviews.series_id GROUP BY series.genre;
+
+#### FIRST NAME, LAST NAME, # OF REVIEWS COUNT, MIN AMT, MAX AMT, AVG RATING, STATUS (LEFT JOIN) ####
+SELECT first_name,
+       last_name,
+       COUNT(rating) AS rating_count,
+       IFNULL(MIN(rating), 0) AS minimum_rating,
+       IFNULL(MAX(rating), 0) AS max_rating,
+       IFNULL(AVG(rating), 0) AS avg_rating,
+       IF(COUNT(rating) >= 1, 'ACTIVE', 'INACTIVE') AS status
+FROM reviewers LEFT JOIN reviews ON reviewers.id = reviews.reviewer_id
+GROUP BY reviewers.id;
+
+#### TITLE, RATING, REVIEWERS (DOUBLE JOINS) ####
+SELECT title, rating, CONCAT(first_name, ' ', last_name) AS reviewer FROM reviewers JOIN reviews ON reviewers.id = reviews.reviewer_id JOIN series ON reviews.series_id = series.id ORDER BY title;
